@@ -7,6 +7,10 @@ public class NumberTextField extends JTextField {
         super();
     }
 
+    public NumberTextField(Number number) {
+        super(number.toString());
+    }
+
     public boolean isValid() {
         if (getDocument() == null) {
             return false;

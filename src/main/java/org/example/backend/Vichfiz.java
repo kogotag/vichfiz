@@ -1,6 +1,5 @@
 package org.example.backend;
 
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -10,25 +9,37 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Vichfiz {
-    private static final int[][] array = {{1, 1, 1}, {3, 3, 3}, {2, 2, 2}};
+    private static final Integer[][] testArray = {{1, 1, 1}, {3, 3, 3}, {2, 2, 2}};
     private static final int harmonicSeriesLimit = 1000000;
 
     public static void writeToExcel(File file) {
+        Table2D<Integer> testTable = new Table2D<Integer>(testArray);
+        writeToExcel(file, 0, testTable);
+    }
+
+    public static <T> void writeToExcel(File file, int offset, Table2D<T> table) {
         try {
             FileOutputStream out = new FileOutputStream(file);
             XSSFWorkbook wb = new XSSFWorkbook();
-            wb.createSheet("first sheet");
-            XSSFSheet sheet = wb.getSheet("first sheet");
-            Iterator<Row> rowIter = sheet.rowIterator();
-            for (int i = 0; i < 3; i++) {
+            XSSFSheet sheet;
+            if (wb.getNumberOfSheets() <= 0) {
+                sheet = wb.createSheet("first sheet");
+            } else {
+                sheet = wb.getSheetAt(0);
+            }
+            for (int i = 0; i < table.getWidth(); i++) {
                 XSSFRow row = sheet.createRow(i);
-                for (int j = 0; j < 3; j++) {
-                    XSSFCell cell = row.createCell(j);
-                    cell.setCellValue(array[i][j]);
+                for (int j = 0; j < table.getLength(); j++) {
+                    XSSFCell cell = row.createCell(j + offset);
+                    T val = table.getTable()[j][i];
+                    if (val instanceof Number) {
+                        cell.setCellValue(((Number) val).doubleValue());
+                    } else {
+                        cell.setCellValue(val.toString());
+                    }
                 }
             }
             wb.write(out);
@@ -77,6 +88,69 @@ public class Vichfiz {
             e.printStackTrace();
         }
         return null;
+    }
+
+    //not tested yet
+    public static String[][] readFromExcel(File file, int offset, int rows, int cols) {
+        try {
+            FileInputStream in = new FileInputStream(file);
+            XSSFWorkbook wb = new XSSFWorkbook(in);
+            XSSFSheet sheet = wb.getSheetAt(0);
+            if (rows - 1 > sheet.getLastRowNum()) {
+                return null;
+            }
+            List<Integer> rowIndexes = new ArrayList<>();
+            for (int i = 0; i <= sheet.getLastRowNum(); i++) {
+                XSSFRow row = sheet.getRow(i);
+                if (row == null) {
+                    continue;
+                }
+                rowIndexes.add(i);
+            }
+
+            String[][] result = new String[rowIndexes.size()][cols];
+            for (Integer rowIndex : rowIndexes) {
+                XSSFRow row = sheet.getRow(rowIndex);
+                for (int i = offset; i < cols + offset; i++) {
+                    XSSFCell cell = row.getCell(i);
+                    if (cell == null) {
+                        result[rowIndex][i] = "";
+                        continue;
+                    }
+                    result[rowIndex][i] = cell.getRawValue();
+                }
+            }
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Graphic2D getGraphicFromExcel(File file, int offset, int dotsCount) {
+        String[][] stringDots = readFromExcel(file, offset, dotsCount, 2);
+        if (stringDots == null || stringDots.length < 1) {
+            return null;
+        }
+        Graphic2D graphic2D = new Graphic2D(dotsCount);
+        double[] arrayOfX = new double[dotsCount];
+        double[] arrayOfY = new double[dotsCount];
+        try {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < dotsCount; j++) {
+                    double val = Double.parseDouble(stringDots[j][i]);
+                    if (i == 0) {
+                        arrayOfX[j] = val;
+                    } else {
+                        arrayOfY[j] = val;
+                    }
+                }
+            }
+        } catch (NumberFormatException ignored) {
+        }
+        graphic2D.setArrayOfX(arrayOfX);
+        graphic2D.setArrayOfY(arrayOfY);
+        return graphic2D;
     }
 
     public static double getStraightHarmonicSum() {
@@ -163,8 +237,46 @@ public class Vichfiz {
         }
         double detX = f * d - g * b;
         double detY = g * a - f * c;
-        solutionList.add(new Solution("", "x = "+detX/det));
-        solutionList.add(new Solution("", "y = "+detY/det));
+        solutionList.add(new Solution("", "x = " + detX / det));
+        solutionList.add(new Solution("", "y = " + detY / det));
         return solutionList;
+    }
+
+    public static Graphic2D getLagrangePolynomialInterpolation(Graphic2D interpolationDots,
+                                                               double abscissaStep,
+                                                               double functionDomainLeftBorder,
+                                                               double functionDomainRightBorder) {
+        if (functionDomainLeftBorder >= functionDomainRightBorder
+                || abscissaStep <= 0d
+                || interpolationDots == null) {
+            return null;
+        }
+        int dotsCount = (int) ((functionDomainRightBorder - functionDomainLeftBorder) / abscissaStep);
+
+        Graphic2D graphic = new Graphic2D(dotsCount);
+
+        for (int i = 0; i < dotsCount; i++) {
+            double x = functionDomainLeftBorder + abscissaStep * i;
+
+            double y = 0d;
+
+            for (int j = 0; j < interpolationDots.getDotsCount(); j++) {
+                double term = interpolationDots.getArrayOfY()[j];
+
+                for (int k = 0; k < interpolationDots.getDotsCount(); k++) {
+                    if (j == k) {
+                        continue;
+                    }
+
+                    term *= (x - interpolationDots.getArrayOfX()[k])
+                            / (interpolationDots.getArrayOfX()[j] - interpolationDots.getArrayOfX()[k]);
+                }
+                y += term;
+            }
+
+            graphic.getArrayOfX()[i] = x;
+            graphic.getArrayOfY()[i] = y;
+        }
+        return graphic;
     }
 }
