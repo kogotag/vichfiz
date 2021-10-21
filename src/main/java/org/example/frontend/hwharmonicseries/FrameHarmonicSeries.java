@@ -1,6 +1,7 @@
 package org.example.frontend.hwharmonicseries;
 
 import org.example.backend.Vichfiz;
+import org.example.frontend.FrameErrorMessage;
 import org.example.frontend.MathLabelDrawer;
 import org.example.frontend.NumberTextField;
 
@@ -18,6 +19,7 @@ public class FrameHarmonicSeries extends JFrame {
     private JLabel labelExpressionReversedCalculation;
     private JLabel labelExpressionLowerBoundCalculation;
     private JLabel labelExpressionLowerBoundHWCalculation;
+    private JLabel labelLowerBound;
     private NumberTextField textFieldLowerBound;
     private JButton buttonCalculate;
     private double straightCalculation;
@@ -27,6 +29,7 @@ public class FrameHarmonicSeries extends JFrame {
     private final String mathExp = "\\sum_{k=1}^{" + Vichfiz.getHarmonicSeriesLimit() + "} \\frac {1} {k} = ";
     private final String mathExpLowerBound = "\\sum_{k=1}^{k \\leq K_{min}} \\frac {1} {k} =";
     private final String mathExpLowerBoundHW = "\\sum_{k=1}^{k \\leq K_{min}} \\frac {k} {k^2+2} =";
+    private final String mathExpLowerBoundName = "K_{min}:";
 
     public FrameHarmonicSeries() throws HeadlessException {
         super("Гармонический ряд");
@@ -67,11 +70,13 @@ public class FrameHarmonicSeries extends JFrame {
         labelExpressionReversedCalculation = new JLabel();
         labelExpressionLowerBoundCalculation = new JLabel();
         labelExpressionLowerBoundHWCalculation = new JLabel();
+        labelLowerBound = new JLabel();
 
         MathLabelDrawer.setLabelFormula(labelExpressionStraightCalculation, mathExp);
         MathLabelDrawer.setLabelFormula(labelExpressionReversedCalculation, mathExp);
         MathLabelDrawer.setLabelFormula(labelExpressionLowerBoundCalculation, mathExpLowerBound);
         MathLabelDrawer.setLabelFormula(labelExpressionLowerBoundHWCalculation, mathExpLowerBoundHW);
+        MathLabelDrawer.setLabelFormula(labelLowerBound, mathExpLowerBoundName);
 
         buttonCalculate = new JButton("Рассчитать");
         buttonCalculate.addActionListener(new ButtonCalculateListener(this));
@@ -81,6 +86,7 @@ public class FrameHarmonicSeries extends JFrame {
         panelLowerBoundCalculation.add(labelExpressionLowerBoundCalculation);
         panelLowerBoundSumHWCalculation.add(labelExpressionLowerBoundHWCalculation);
         panelDownButtons.add(buttonCalculate);
+        panelDownButtons.add(labelLowerBound);
         panelDownButtons.add(textFieldLowerBound);
 
         Container contentPane = this.getContentPane();
@@ -103,6 +109,8 @@ public class FrameHarmonicSeries extends JFrame {
                     .getSumFromHomework(textFieldLowerBound.getValue());
             MathLabelDrawer.setLabelFormula(labelExpressionLowerBoundCalculation, expressionLowerBoundCalculation);
             MathLabelDrawer.setLabelFormula(labelExpressionLowerBoundHWCalculation, expressionLowerBoundHWCalculation);
+        } else {
+            new FrameErrorMessage("Пожалуйста, введите число");
         }
         MathLabelDrawer.setLabelFormula(labelExpressionStraightCalculation, expressionStraightCalculation);
         MathLabelDrawer.setLabelFormula(labelExpressionReversedCalculation, expressionReversedCalculation);

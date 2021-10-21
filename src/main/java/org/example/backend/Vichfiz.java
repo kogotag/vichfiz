@@ -131,20 +131,40 @@ public class Vichfiz {
 
     public static String getQuadEquationSolution(double a, double b, double c) {
         double discriminant = Math.pow(b, 2d) - 4d * a * c;
-        if(discriminant < 0){
+        if (discriminant < 0) {
             return "Нет действительных решений";
         } else {
-            if( a == 0d){
-                if(b == 0d){
-                    if (c == 0d){
+            if (a == 0d) {
+                if (b == 0d) {
+                    if (c == 0d) {
                         return "все действительные числа";
                     }
                     return "нет решений";
                 }
-                return "x = " + (-1d*c/b);
+                return "x = " + (-1d * c / b);
             }
             double d = Math.sqrt(discriminant);
-            return "x1 = " + ((-1d*b+d)/(2d*a)) + "; x2 = " + ((-1d*b-d)/(2d*a));
+            return "x1 = " + ((-1d * b + d) / (2d * a)) + "; x2 = " + ((-1d * b - d) / (2d * a));
         }
+    }
+
+    public static List<Solution> getLinearSystem2by2Solutions(
+            double a,
+            double b,
+            double c,
+            double d,
+            double f,
+            double g) {
+        List<Solution> solutionList = new ArrayList<>();
+        double det = a * d - b * c;
+        if (det == 0d) {
+            solutionList.add(new Solution("бесконечно много решений", ""));
+            return solutionList;
+        }
+        double detX = f * d - g * b;
+        double detY = g * a - f * c;
+        solutionList.add(new Solution("", "x = "+detX/det));
+        solutionList.add(new Solution("", "y = "+detY/det));
+        return solutionList;
     }
 }

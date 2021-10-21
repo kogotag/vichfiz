@@ -10,6 +10,9 @@ public class FrameQuadEquations extends JFrame {
     private JLabel labelDescription;
     private JLabel labelDescriptionFormula;
     private JLabel labelSolution;
+    private JLabel labelAName;
+    private JLabel labelBName;
+    private JLabel labelCName;
     private NumberTextField textFieldA;
     private NumberTextField textFieldB;
     private NumberTextField textFieldC;
@@ -27,6 +30,9 @@ public class FrameQuadEquations extends JFrame {
         labelDescriptionFormula = new JLabel();
         MathLabelDrawer.setLabelFormula(labelDescriptionFormula, "ax^2 + bx + c = 0");
         labelSolution = new JLabel();
+        labelAName = new JLabel("a:");
+        labelBName = new JLabel("b:");
+        labelCName = new JLabel("c:");
 
         textFieldA = new NumberTextField();
         textFieldB = new NumberTextField();
@@ -47,8 +53,11 @@ public class FrameQuadEquations extends JFrame {
                                         .addComponent(labelDescriptionFormula))
                                 .addGroup(layout.createSequentialGroup()
                                         .addGap(100)
+                                        .addComponent(labelAName)
                                         .addComponent(textFieldA)
+                                        .addComponent(labelBName)
                                         .addComponent(textFieldB)
+                                        .addComponent(labelCName)
                                         .addComponent(textFieldC)
                                         .addGap(100))
                                 .addComponent(buttonSolve)
@@ -61,8 +70,11 @@ public class FrameQuadEquations extends JFrame {
                                 .addComponent(labelDescription)
                                 .addComponent(labelDescriptionFormula))
                         .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(labelAName)
                                 .addComponent(textFieldA)
+                                .addComponent(labelBName)
                                 .addComponent(textFieldB)
+                                .addComponent(labelCName)
                                 .addComponent(textFieldC))
                         .addComponent(buttonSolve)
                         .addComponent(labelSolution)
