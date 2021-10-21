@@ -2,6 +2,7 @@ package org.example.frontend.hwharmonicseries;
 
 import org.example.backend.Vichfiz;
 import org.example.frontend.FrameErrorMessage;
+import org.example.frontend.FrameVichfizFullScreen;
 import org.example.frontend.MathLabelDrawer;
 import org.example.frontend.NumberTextField;
 
@@ -9,7 +10,7 @@ import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 
-public class FrameHarmonicSeries extends JFrame {
+public class FrameHarmonicSeries extends FrameVichfizFullScreen {
     private JPanel panelStraightCalculation;
     private JPanel panelReversedCalculation;
     private JPanel panelLowerBoundCalculation;
@@ -33,10 +34,6 @@ public class FrameHarmonicSeries extends JFrame {
 
     public FrameHarmonicSeries() throws HeadlessException {
         super("Гармонический ряд");
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(0, 0, (int) dim.width / 2, (int) dim.height / 2);
-        setVisible(true);
-        setLocationRelativeTo(null);
 
         panelStraightCalculation = new JPanel();
         panelStraightCalculation.setBorder(new TitledBorder(null,

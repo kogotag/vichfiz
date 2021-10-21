@@ -1,12 +1,13 @@
 package org.example.hwlinearsystems;
 
+import org.example.frontend.FrameVichfizFullScreen;
 import org.example.frontend.MathLabelDrawer;
 import org.example.frontend.NumberTextField;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameLinearSystems extends JFrame {
+public class FrameLinearSystems extends FrameVichfizFullScreen {
     private JPanel panelSolutions;
     private JLabel labelDescriptionText;
     private JLabel labelDescriptionExpression;
@@ -17,10 +18,6 @@ public class FrameLinearSystems extends JFrame {
 
     public FrameLinearSystems() throws HeadlessException {
         super("Линейные системы уравнений");
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(0, 0, (int) dim.width / 3, (int) dim.height / 3);
-        setVisible(true);
-        setLocationRelativeTo(null);
         Container contentPane = getContentPane();
 
         panelSolutions = new JPanel();

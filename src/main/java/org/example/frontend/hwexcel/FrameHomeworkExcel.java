@@ -1,10 +1,12 @@
 package org.example.frontend.hwexcel;
 
+import org.example.frontend.FrameVichfizFullScreen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class FrameHomeworkExcel extends JFrame {
+public class FrameHomeworkExcel extends FrameVichfizFullScreen {
     private final String excelDocNotFoundMsg = "документ не найден";
     private File excelDocument;
     private JButton buttonSelectDocument;
@@ -16,10 +18,6 @@ public class FrameHomeworkExcel extends JFrame {
 
     public FrameHomeworkExcel() throws HeadlessException {
         super("Excel");
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(0, 0, (int) dim.width / 3, (int) dim.height / 3);
-        setVisible(true);
-        setLocationRelativeTo(null);
         labelSelectDocument = new LabelSelectedDocument(excelDocNotFoundMsg);
         buttonSelectDocument = new JButton("Открыть");
         buttonWriteToDocument = new JButton("Записать");

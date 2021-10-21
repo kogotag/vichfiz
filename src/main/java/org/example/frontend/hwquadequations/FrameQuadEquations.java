@@ -1,12 +1,13 @@
 package org.example.frontend.hwquadequations;
 
+import org.example.frontend.FrameVichfizFullScreen;
 import org.example.frontend.NumberTextField;
 import org.example.frontend.MathLabelDrawer;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameQuadEquations extends JFrame {
+public class FrameQuadEquations extends FrameVichfizFullScreen {
     private JLabel labelDescription;
     private JLabel labelDescriptionFormula;
     private JLabel labelSolution;
@@ -20,10 +21,6 @@ public class FrameQuadEquations extends JFrame {
 
     public FrameQuadEquations() throws HeadlessException {
         super("Квадратные уравнения");
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds(0, 0, (int) dim.width / 3, (int) dim.height / 3);
-        setVisible(true);
-        setLocationRelativeTo(null);
         Container contentPane = getContentPane();
 
         labelDescription = new JLabel("Решение квадратных уравнений вида: ");
