@@ -1,16 +1,16 @@
 package org.example.hwlinearsystems;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import org.example.frontend.ButtonWithParent;
 
-public class ButtonSolveListener implements ActionListener {
-    FrameLinearSystems parent;
+import java.awt.event.ActionEvent;
+
+public class ButtonSolveListener extends ButtonWithParent<FrameLinearSystems> {
     @Override
     public void actionPerformed(ActionEvent e) {
 
     }
 
     public ButtonSolveListener(FrameLinearSystems parent) {
-        this.parent = parent;
+        super(parent);
     }
 }

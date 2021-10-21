@@ -1,15 +1,15 @@
 package org.example.frontend.hwexcel;
 
+import org.example.frontend.ButtonWithParent;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
-public class ButtonSelectDocumentListener implements ActionListener {
+public class ButtonSelectDocumentListener extends ButtonWithParent<FrameHomeworkExcel> {
     private JFileChooser fileChooser;
     private JLabel labelSelectedFile;
-    private FrameHomeworkExcel parent;
     private FileNameExtensionFilter xlsxFileFilter = new FileNameExtensionFilter(
             "Excel Workbook .xlsx", "xlsx");
 
@@ -26,7 +26,7 @@ public class ButtonSelectDocumentListener implements ActionListener {
     }
 
     public ButtonSelectDocumentListener(JLabel labelSelectedFile, FrameHomeworkExcel parent) {
+        super(parent);
         this.labelSelectedFile = labelSelectedFile;
-        this.parent = parent;
     }
 }

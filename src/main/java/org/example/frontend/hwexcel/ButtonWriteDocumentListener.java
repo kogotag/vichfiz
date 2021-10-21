@@ -1,14 +1,12 @@
 package org.example.frontend.hwexcel;
 
 import org.example.backend.Vichfiz;
+import org.example.frontend.ButtonWithParent;
 import org.example.frontend.FrameErrorMessage;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ButtonWriteDocumentListener implements ActionListener {
-    private FrameHomeworkExcel parent;
-
+public class ButtonWriteDocumentListener extends ButtonWithParent<FrameHomeworkExcel> {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (parent.getExcelDocument() == null) {
@@ -26,6 +24,6 @@ public class ButtonWriteDocumentListener implements ActionListener {
     }
 
     public ButtonWriteDocumentListener(FrameHomeworkExcel parent) {
-        this.parent = parent;
+        super(parent);
     }
 }

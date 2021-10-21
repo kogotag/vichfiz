@@ -1,14 +1,10 @@
 package org.example.frontend.hwharmonicseries;
 
-import org.example.backend.Vichfiz;
+import org.example.frontend.ButtonWithParent;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ButtonCalculateListener implements ActionListener {
-    private FrameHarmonicSeries parent;
-
+public class ButtonCalculateListener extends ButtonWithParent<FrameHarmonicSeries> {
     @Override
     public void actionPerformed(ActionEvent e) {
         parent.calculate();
@@ -16,6 +12,6 @@ public class ButtonCalculateListener implements ActionListener {
     }
 
     public ButtonCalculateListener(FrameHarmonicSeries parent) {
-        this.parent = parent;
+        super(parent);
     }
 }
