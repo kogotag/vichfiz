@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class FrameHomeworkExcel extends FrameVichfizFullScreen {
+public class FrameExcel extends FrameVichfizFullScreen {
     private final String excelDocNotFoundMsg = "документ не найден";
     private File excelDocument;
     private JButton buttonSelectDocument;
@@ -16,7 +16,7 @@ public class FrameHomeworkExcel extends FrameVichfizFullScreen {
     private LabelSelectedDocument labelSelectDocument;
     private String[][] table;
 
-    public FrameHomeworkExcel() throws HeadlessException {
+    public FrameExcel() throws HeadlessException {
         super("Excel");
         labelSelectDocument = new LabelSelectedDocument(excelDocNotFoundMsg);
         buttonSelectDocument = new JButton("Открыть");

@@ -3,6 +3,7 @@ package org.example.frontend.hwinterpolation;
 import org.example.frontend.FrameErrorMessage;
 import org.example.frontend.FrameVichfizFullScreen;
 import org.example.frontend.NumberTextField;
+import org.example.frontend.TextFieldLineSized;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -25,12 +26,18 @@ public class FrameInterpolation extends FrameVichfizFullScreen {
     private JButton buttonSelectGraphicFile = new JButton("Открыть");
     private JButton buttonCalculate = new JButton("Рассчитать");
     private ButtonSelectExcelFileListener buttonSelectExcelFileListener;
-    private NumberTextField textFieldOffset = new NumberTextField(3);
-    private NumberTextField textFieldInterpolationDotsCount = new NumberTextField(3);
-    private NumberTextField textFieldResultGraphicStep = new NumberTextField(0.1d);
-    private NumberTextField textFieldResultGraphicLeftBorder = new NumberTextField(0d);
-    private NumberTextField textFieldResultGraphicRightBorder = new NumberTextField(10d);
-    private JTextField textFieldSelectedFile = new JTextField("");
+    private NumberTextField textFieldOffset = new NumberTextField(3,
+            textFieldSmallHeight, textFieldSmallLength);
+    private NumberTextField textFieldInterpolationDotsCount = new NumberTextField(3,
+            textFieldSmallHeight, textFieldSmallLength);
+    private NumberTextField textFieldResultGraphicStep = new NumberTextField(0.1d,
+            textFieldSmallHeight, textFieldSmallLength);
+    private NumberTextField textFieldResultGraphicLeftBorder = new NumberTextField(0d,
+            textFieldSmallHeight, textFieldSmallLength);
+    private NumberTextField textFieldResultGraphicRightBorder = new NumberTextField(10d,
+            textFieldSmallHeight, textFieldSmallLength);
+    private TextFieldLineSized textFieldSelectedFile = new TextFieldLineSized("",
+            textFieldSmallHeight, textFieldSmallLength);
     private File file;
 
     public FrameInterpolation() throws HeadlessException {
@@ -116,17 +123,10 @@ public class FrameInterpolation extends FrameVichfizFullScreen {
                         .addComponent(panelSelectFile)
                         .addComponent(panelSettings)
         );
-        Dimension smallArea = new Dimension(100, 25);
-        textFieldOffset.setMaximumSize(smallArea);
         textFieldSelectedFile.setEditable(false);
-        textFieldSelectedFile.setMaximumSize(new Dimension(200, 25));
-        textFieldResultGraphicStep.setMaximumSize(smallArea);
-        textFieldResultGraphicLeftBorder.setMaximumSize(smallArea);
-        textFieldResultGraphicRightBorder.setMaximumSize(smallArea);
-        textFieldInterpolationDotsCount.setMaximumSize(smallArea);
         buttonSelectExcelFileListener = new ButtonSelectExcelFileListener(this);
         buttonSelectGraphicFile.addActionListener(buttonSelectExcelFileListener);
-        buttonCalculate.addActionListener(new ButtonCalculateListener(this));
+        buttonCalculate.addActionListener(new ButtonListenerCalculateListener(this));
     }
 
     public void setTextFieldSelectedFileText(String text) {

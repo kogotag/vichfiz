@@ -3,13 +3,13 @@ package org.example.frontend;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 
-public class ButtonOkListener extends ButtonWithParent<JFrame> {
+public class ButtonListenerOkListener extends ButtonListenerWithParent<JFrame> {
     @Override
     public void actionPerformed(ActionEvent e) {
         parent.dispose();
     }
 
-    public ButtonOkListener(JFrame parent) {
+    public ButtonListenerOkListener(JFrame parent) {
         super(parent);
     }
 }

@@ -1,14 +1,20 @@
 package org.example.frontend;
 
-import javax.swing.*;
-
-public class NumberTextField extends JTextField {
+public class NumberTextField extends TextFieldLineSized {
     public NumberTextField() {
         super();
     }
 
     public NumberTextField(Number number) {
         super(number.toString());
+    }
+
+    public NumberTextField(int height, int length) {
+        super(height, length);
+    }
+
+    public NumberTextField(Number number, int height, int length) {
+        super(number.toString(), height, length);
     }
 
     public boolean isValid() {

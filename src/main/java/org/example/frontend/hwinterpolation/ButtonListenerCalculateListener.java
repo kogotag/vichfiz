@@ -2,14 +2,14 @@ package org.example.frontend.hwinterpolation;
 
 import org.example.backend.Graphic2D;
 import org.example.backend.Vichfiz;
-import org.example.frontend.ButtonWithParent;
+import org.example.frontend.ButtonListenerWithParent;
 import org.example.frontend.FrameErrorMessage;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-public class ButtonCalculateListener extends ButtonWithParent<FrameInterpolation> {
-    public ButtonCalculateListener(FrameInterpolation parent) {
+public class ButtonListenerCalculateListener extends ButtonListenerWithParent<FrameInterpolation> {
+    public ButtonListenerCalculateListener(FrameInterpolation parent) {
         super(parent);
     }
 

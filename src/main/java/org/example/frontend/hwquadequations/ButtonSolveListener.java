@@ -1,12 +1,12 @@
 package org.example.frontend.hwquadequations;
 
 import org.example.backend.Vichfiz;
-import org.example.frontend.ButtonWithParent;
+import org.example.frontend.ButtonListenerWithParent;
 import org.example.frontend.FrameErrorMessage;
 
 import java.awt.event.ActionEvent;
 
-public class ButtonSolveListener extends ButtonWithParent<FrameQuadEquations> {
+public class ButtonSolveListener extends ButtonListenerWithParent<FrameQuadEquations> {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (checkFields()) {

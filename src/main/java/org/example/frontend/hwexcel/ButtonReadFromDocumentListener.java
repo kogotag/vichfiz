@@ -1,12 +1,12 @@
 package org.example.frontend.hwexcel;
 
 import org.example.backend.Vichfiz;
-import org.example.frontend.ButtonWithParent;
+import org.example.frontend.ButtonListenerWithParent;
 import org.example.frontend.FrameErrorMessage;
 
 import java.awt.event.ActionEvent;
 
-public class ButtonReadFromDocumentListener extends ButtonWithParent<FrameHomeworkExcel> {
+public class ButtonReadFromDocumentListener extends ButtonListenerWithParent<FrameExcel> {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (parent.getExcelDocument() == null || !parent.getExcelDocument().exists()) {
@@ -21,7 +21,7 @@ public class ButtonReadFromDocumentListener extends ButtonWithParent<FrameHomewo
         parent.setTable(s);
     }
 
-    public ButtonReadFromDocumentListener(FrameHomeworkExcel parent) {
+    public ButtonReadFromDocumentListener(FrameExcel parent) {
         super(parent);
     }
 }

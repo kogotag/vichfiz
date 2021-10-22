@@ -76,7 +76,7 @@ public class FrameHarmonicSeries extends FrameVichfizFullScreen {
         MathLabelDrawer.setLabelFormula(labelLowerBound, mathExpLowerBoundName);
 
         buttonCalculate = new JButton("Рассчитать");
-        buttonCalculate.addActionListener(new ButtonCalculateListener(this));
+        buttonCalculate.addActionListener(new ButtonListenerCalculateListener(this));
 
         panelStraightCalculation.add(labelExpressionStraightCalculation);
         panelReversedCalculation.add(labelExpressionReversedCalculation);

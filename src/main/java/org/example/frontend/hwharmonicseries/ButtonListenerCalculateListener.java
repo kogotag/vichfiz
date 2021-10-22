@@ -1,17 +1,17 @@
 package org.example.frontend.hwharmonicseries;
 
-import org.example.frontend.ButtonWithParent;
+import org.example.frontend.ButtonListenerWithParent;
 
 import java.awt.event.ActionEvent;
 
-public class ButtonCalculateListener extends ButtonWithParent<FrameHarmonicSeries> {
+public class ButtonListenerCalculateListener extends ButtonListenerWithParent<FrameHarmonicSeries> {
     @Override
     public void actionPerformed(ActionEvent e) {
         parent.calculate();
         parent.renewCalculationLabels();
     }
 
-    public ButtonCalculateListener(FrameHarmonicSeries parent) {
+    public ButtonListenerCalculateListener(FrameHarmonicSeries parent) {
         super(parent);
     }
 }

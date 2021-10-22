@@ -14,7 +14,7 @@ public class FrameErrorMessage extends JFrame {
         setLocationRelativeTo(null);
         label = new JLabel(errorMsg);
         buttonOk = new JButton("OK");
-        buttonOk.addActionListener(new ButtonOkListener(this));
+        buttonOk.addActionListener(new ButtonListenerOkListener(this));
         setVisible(true);
         setResizable(false);
         Container container = getContentPane();

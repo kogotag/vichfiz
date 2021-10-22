@@ -1,14 +1,13 @@
 package org.example.frontend.hwinterpolation;
 
-import org.example.frontend.ButtonWithParent;
-import org.example.frontend.FrameWithFile;
+import org.example.frontend.ButtonListenerWithParent;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
 
-public class ButtonSelectExcelFileListener extends ButtonWithParent<FrameInterpolation> {
+public class ButtonSelectExcelFileListener extends ButtonListenerWithParent<FrameInterpolation> {
     public ButtonSelectExcelFileListener(FrameInterpolation parent) {
         super(parent);
     }

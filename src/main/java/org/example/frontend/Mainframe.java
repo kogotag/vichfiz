@@ -1,6 +1,6 @@
 package org.example.frontend;
 
-import org.example.frontend.hwexcel.FrameHomeworkExcel;
+import org.example.frontend.hwexcel.FrameExcel;
 import org.example.frontend.hwharmonicseries.FrameHarmonicSeries;
 import org.example.frontend.hwinterpolation.FrameInterpolation;
 import org.example.frontend.hwquadequations.FrameQuadEquations;
@@ -12,12 +12,12 @@ import java.awt.*;
 public class Mainframe extends FrameVichfizFullScreen {
     private JMenuBar menuBar;
     private JMenu menuOpenHomework;
-    private JMenuItem menuItemExcel;
-    private JMenuItem menuItemHarmonicSeries;
-    private JMenuItem menuItemQuadEquations;
-    private JMenuItem menuItemLinearSystems;
-    private JMenuItem menuItemInterpolation;
-    private FrameHomeworkExcel frameHomeworkExcel;
+    private MenuItemFrameOpener menuItemExcel;
+    private MenuItemFrameOpener menuItemHarmonicSeries;
+    private MenuItemFrameOpener menuItemQuadEquations;
+    private MenuItemFrameOpener menuItemLinearSystems;
+    private MenuItemFrameOpener menuItemInterpolation;
+    private FrameExcel frameExcel;
     private FrameHarmonicSeries frameHarmonicSeries;
     private FrameQuadEquations frameQuadEquations;
     private FrameLinearSystems frameLinearSystems;
@@ -30,17 +30,21 @@ public class Mainframe extends FrameVichfizFullScreen {
         menuBar = new JMenuBar();
 
         menuOpenHomework = new JMenu("Выбор задания");
-        menuItemExcel = new JMenuItem("Excel");
-        menuItemHarmonicSeries = new JMenuItem("Суммы рядов");
-        menuItemQuadEquations = new JMenuItem("Квадратные уравнения");
-        menuItemLinearSystems = new JMenuItem("Линейные уравнения");
-        menuItemInterpolation = new JMenuItem("Интерполяция");
-
-        menuItemExcel.addActionListener(new MenuItemExcelListener(frameHomeworkExcel));
-        menuItemHarmonicSeries.addActionListener(new MenuItemHarmonicSeriesListener((frameHarmonicSeries)));
-        menuItemQuadEquations.addActionListener(new MenuItemQuadEquationsListener(frameQuadEquations));
-        menuItemLinearSystems.addActionListener(new MenuItemLinearSystemsListener(frameLinearSystems));
-        menuItemInterpolation.addActionListener((new MenuItemInterpolationListener(frameInterpolation)));
+        menuItemExcel = new MenuItemFrameOpener("Excel",
+                frameExcel,
+                FrameExcel.class);
+        menuItemHarmonicSeries = new MenuItemFrameOpener("Суммы рядов",
+                frameHarmonicSeries,
+                FrameHarmonicSeries.class);
+        menuItemQuadEquations = new MenuItemFrameOpener("Квадратные уравнения",
+                frameQuadEquations,
+                FrameQuadEquations.class);
+        menuItemLinearSystems = new MenuItemFrameOpener("Линейные уравнения",
+                frameLinearSystems,
+                FrameLinearSystems.class);
+        menuItemInterpolation = new MenuItemFrameOpener("Интерполяция",
+                frameInterpolation,
+                FrameInterpolation.class);
 
         menuOpenHomework.add(menuItemExcel);
         menuOpenHomework.add(menuItemHarmonicSeries);

@@ -1,11 +1,11 @@
 package org.example.frontend.hwexcel;
 
-import org.example.frontend.ButtonWithParent;
+import org.example.frontend.ButtonListenerWithParent;
 import org.example.frontend.FrameErrorMessage;
 
 import java.awt.event.ActionEvent;
 
-public class ButtonShowTableListener extends ButtonWithParent<FrameHomeworkExcel> {
+public class ButtonShowTableListener extends ButtonListenerWithParent<FrameExcel> {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (parent.getExcelDocument() == null || !parent.getExcelDocument().exists()) {
@@ -19,7 +19,7 @@ public class ButtonShowTableListener extends ButtonWithParent<FrameHomeworkExcel
         FrameTable frameTable = new FrameTable(parent.getExcelDocument().getName(), parent.getTable());
     }
 
-    public ButtonShowTableListener(FrameHomeworkExcel parent) {
+    public ButtonShowTableListener(FrameExcel parent) {
         super(parent);
     }
 }
