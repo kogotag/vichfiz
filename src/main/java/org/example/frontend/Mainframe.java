@@ -4,7 +4,7 @@ import org.example.frontend.hwexcel.FrameExcel;
 import org.example.frontend.hwharmonicseries.FrameHarmonicSeries;
 import org.example.frontend.hwinterpolation.FrameInterpolation;
 import org.example.frontend.hwquadequations.FrameQuadEquations;
-import org.example.hwlinearsystems.FrameLinearSystems;
+import org.example.frontend.hwlinearsystems.FrameLinearSystems;
 
 import javax.swing.*;
 import java.awt.*;

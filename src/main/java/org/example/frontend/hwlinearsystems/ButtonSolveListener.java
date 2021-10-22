@@ -1,4 +1,4 @@
-package org.example.hwlinearsystems;
+package org.example.frontend.hwlinearsystems;
 
 import org.example.frontend.ButtonListenerWithParent;
 
