@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 abstract public class FrameVichfizFullScreen extends JFrame {
-    public final int textFieldSmallHeight = 25;
-    public final int textFieldSmallLength = 100;
-    public final int textFieldMediumLength = 200;
-    public final int textFieldLargeLength = 300;
+    protected final int textFieldSmallHeight = 25;
+    protected final int textFieldSmallLength = 100;
+    protected final int textFieldMediumLength = 200;
+    protected final int textFieldLargeLength = 300;
+    protected Dimension screenSize;
     public FrameVichfizFullScreen(String title) throws HeadlessException {
         super(title);
         Rectangle r = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
@@ -15,5 +16,6 @@ abstract public class FrameVichfizFullScreen extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     }
 }
