@@ -52,7 +52,7 @@ public class Mainframe extends FrameVichfizFullScreen {
         menuOpenHomework.add(menuItemExcel);
         menuOpenHomework.add(menuItemHarmonicSeries);
         menuOpenHomework.add(menuItemQuadEquations);
-        //menuOpenHomework.add(menuItemLinearSystems);
+        menuOpenHomework.add(menuItemLinearSystems);
         menuOpenHomework.add(menuItemInterpolation);
 
         menuBar.add(menuOpenHomework);

@@ -406,12 +406,16 @@ public class Vichfiz {
             double g) {
         List<Solution> solutionList = new ArrayList<>();
         double det = a * d - b * c;
-        if (det == 0d) {
-            solutionList.add(new Solution("бесконечно много решений", ""));
-            return solutionList;
-        }
         double detX = f * d - g * b;
         double detY = g * a - f * c;
+        if (det == 0d) {
+            if(detX == 0 && detY == 0){
+                solutionList.add(new Solution("бесконечно много решений", ""));
+                return solutionList;
+            }
+            solutionList.add(new Solution("нет решений", ""));
+            return solutionList;
+        }
         solutionList.add(new Solution("", "x = " + detX / det));
         solutionList.add(new Solution("", "y = " + detY / det));
         return solutionList;

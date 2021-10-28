@@ -19,9 +19,6 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution{" +
-                "namePart='" + namePart + '\'' +
-                ", expressionPart='" + expressionPart + '\'' +
-                '}';
+        return namePart + " " + expressionPart;
     }
 }
